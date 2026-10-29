@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.hugorolimf.monitor",
+  "name": "Island Display",
+  "version": "1.0.0",
+  "author": "Hugo Rolim Filho",
+  "license": "MIT",
+  "homepage": "https://github.com/hugorolimf/omarchy-island-display",
+  "description": "Brightness slider and laptop display controls, in the Island look (stroke icons, anatomy panel), in English or Portuguese",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Island Display",
+    "description": "Brightness slider and laptop display controls",
+    "category": "System",
+    "allowMultiple": false
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.monitor"
+  }
+}
