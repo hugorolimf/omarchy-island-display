@@ -43,6 +43,20 @@ Panel {
   //                  j/k walks each row.
   // Mouse hover on a target updates root state via the components' `hovered`
   // signal so keyboard cursor and pointer share one highlight.
+  // Night light (was a bar indicator). Widgets get no first-party services,
+  // so it goes through the shell's own IPC, read again on every open.
+  property bool nightlightOn: false
+  function setNightlight(on) {
+    nightlightOn = on
+    Quickshell.execDetached(["omarchy-shell", "nightlight", on ? "enable" : "disable"])
+  }
+  Process {
+    id: nightlightProc
+    command: ["omarchy-shell", "nightlight", "status"]
+    stdout: StdioCollector {
+      onStreamFinished: { try { root.nightlightOn = JSON.parse(text).enabled === true } catch (e) {} }
+    }
+  }
   readonly property var scalePresets: ["1", "1.25", "1.6", "2", "3", "4"]
   readonly property var scaleValues: {
     for (var i = 0; i < displays.length; i++) {
@@ -365,6 +379,7 @@ Panel {
   onOpenedChanged: {
     if (opened) {
       refresh()
+      nightlightProc.running = true
       if (brightnessAvailable) {
         focusSection = "brightness"
         selectedIndex = -1
@@ -668,6 +683,19 @@ Panel {
                 }
               }
             }
+          }
+
+          // ---------- Night light (was a bar indicator) ----------
+          PanelSeparator {
+            foreground: root.bar.foreground
+          }
+
+          Toggle {
+            width: parent.width
+            label: Strings.T("Luz noturna")
+            description: Strings.T("Tons quentes para descansar a vista")
+            checked: root.nightlightOn
+            onClicked: root.setNightlight(!checked)
           }
 
           // ---------- Text size ----------

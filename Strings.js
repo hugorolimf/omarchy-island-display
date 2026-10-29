@@ -17,7 +17,9 @@ var en = {
  "TAMANHO DO TEXTO": "TEXT SIZE",
  "ESCALA": "SCALE",
  "MONITORES": "DISPLAYS",
- " · em foco": " · focused"
+ " · em foco": " · focused",
+ "Luz noturna": "Night light",
+ "Tons quentes para descansar a vista": "Warmer colors to rest your eyes"
 }
 
 function T(s) { return english && en[s] !== undefined ? en[s] : s }
