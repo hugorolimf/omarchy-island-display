@@ -571,6 +571,7 @@ Panel {
               spacing: Style.space(2)
 
               Text {
+                textFormat: Text.PlainText
                 text: Strings.T("Tela")
                 color: Anatomy.strong
                 font.family: Anatomy.sans
