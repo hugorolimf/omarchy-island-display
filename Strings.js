@@ -19,7 +19,11 @@ var en = {
  "MONITORES": "DISPLAYS",
  " · em foco": " · focused",
  "Luz noturna": "Night light",
- "Tons quentes para descansar a vista": "Warmer colors to rest your eyes"
+ "Tons quentes para descansar a vista": "Warmer colors to rest your eyes",
+ "LIGADA": "ON",
+ "DESLIGADA": "OFF",
+ "Tons quentes na tela para descansar a vista.": "Warm tones on screen to rest your eyes.",
+ "Cores normais na tela.": "Normal colours on screen."
 }
 
 function T(s) { return english && en[s] !== undefined ? en[s] : s }

@@ -504,6 +504,10 @@ Panel {
     }
   }
 
+  // the panel's height follows its content smoothly while open
+  property real panelHeight: panelColumn.implicitHeight
+  Behavior on panelHeight { enabled: root.opened; NumberAnimation { duration: 280; easing.type: Easing.Bezier; easing.bezierCurve: Anatomy.ease } }
+
   KeyboardPanel {
     id: panel
     anchorItem: button
@@ -512,7 +516,7 @@ Panel {
     open: root.opened
     focusTarget: keyCatcher
     contentWidth: panel.fittedContentWidth(Style.space(380))
-    contentHeight: panel.fittedContentHeight(panelColumn.implicitHeight, Style.space(560))
+    contentHeight: panel.fittedContentHeight(root.panelHeight, Style.space(560))
 
     PanelKeyCatcher {
       id: keyCatcher
@@ -691,12 +695,20 @@ Panel {
             foreground: root.bar.foreground
           }
 
-          Toggle {
+          // said in words; on, the row and the moon warm to amber
+          StateHero {
             width: parent.width
-            label: Strings.T("Luz noturna")
-            description: Strings.T("Tons quentes para descansar a vista")
+            title: Strings.T("Luz noturna")
+            stateText: root.nightlightOn ? Strings.T("LIGADA") : Strings.T("DESLIGADA")
+            detail: root.nightlightOn ? Strings.T("Tons quentes na tela para descansar a vista.")
+              : Strings.T("Cores normais na tela.")
+            iconPath: Anatomy.icons.moon
+            iconColor: Anatomy.mid
+            motion: "swing"
             checked: root.nightlightOn
-            onClicked: root.setNightlight(!checked)
+            alert: root.nightlightOn
+            tone: Anatomy.amber
+            onToggled: root.setNightlight(!root.nightlightOn)
           }
 
           // ---------- Text size ----------
