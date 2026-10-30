@@ -18,6 +18,15 @@ Brightness, text size, scale and the displays, drawn with thin stroke icons and 
 - 🔄 **Drop-in.** It's Omarchy's own `omarchy.monitor` underneath (same behaviour, same
   shortcuts and IPC): enabling it takes the original's place on the bar.
 
+## See it
+
+Recorded on a real desktop, mouse and clicks included. The panel follows the
+system language; this take is in Portuguese.
+
+**Brightness and Night light**: the sun in the bar grows with the brightness; Night light warms its row while it's on.
+
+![Brightness and Night light](assets/display.gif)
+
 ## Requirements
 
 [Island Kit](https://github.com/hugorolimf/omarchy-island-kit): the panel is drawn with it.
